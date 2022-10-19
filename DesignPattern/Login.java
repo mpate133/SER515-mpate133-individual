@@ -7,10 +7,49 @@ import java.util.Scanner;
 
 public class Login {
     private int typeOfUser;
-    private Scanner inputScanner = new Scanner(System.in);
+    private Scanner sc = new Scanner(System.in);
 
 
-    private boolean authentication(String username, String userPassword){
+    protected UserInfoItem displayLoginOptions() {
+        switch(typeOfUser) {
+            case 0:
+                System.out.println("Seller Login Form");
+                break;
+            case 1:
+                System.out.println("Buyer Login Form");
+                break;
+            default:
+                break;
+        }
+
+        UserInfoItem userObject = enterLoginCredentials();
+        if(userObject == null){
+            System.out.println("10 invalid attempts made for login. Temporary logged out of the menu !!");
+            return null;
+        }
+        System.out.println("Login successful. Welcome :" + userObject.getUserName());
+        return userObject;
+
+    }
+
+    public int selectTheTypeOfUser(){
+        boolean isValidInput = false;
+
+        while(!isValidInput){
+            System.out.println("Please select any option from the following :");
+            System.out.println("0 : Seller");
+            System.out.println("1 : Buyer");
+            System.out.println("2 : Exit Program");
+
+            typeOfUser = sc.nextInt();
+            if(typeOfUser == 0 || typeOfUser == 1 || typeOfUser == 2){
+                isValidInput = true;
+            }
+        }
+        return typeOfUser;
+    }
+
+    private boolean authenticateUserCredentials(String userName, String userPassword){
         File fileReader;
         if(typeOfUser == 0){
             fileReader = new File("DesignPattern/TextFiles/SellerInfo.txt");
@@ -23,9 +62,9 @@ public class Login {
             String lineReader;
             while ((lineReader = bufferReader.readLine()) != null)
             {
-                String[] userCredentials = lineReader.split(":",2);
-                if(username.equals(userCredentials[0])) {
-                    if(userPassword.equals(userCredentials[1])) {
+                String[] credentialsArr = lineReader.split(":",2);
+                if(userName.equals(credentialsArr[0])) {
+                    if(userPassword.equals(credentialsArr[1])) {
                         return true;
                     }
                     break;
@@ -39,60 +78,21 @@ public class Login {
         return false;
     }
 
-    protected UserInfoItem displayLoginForm() {
-        switch(typeOfUser) {
-            case 0:
-                System.out.println("Seller Login Form");
-                break;
-            case 1:
-                System.out.println("Buyer Login Form");
-                break;
-            default:
-                break;
-        }
-
-        UserInfoItem userObject = inputCredentials();
-        if(userObject == null){
-            System.out.println("10 invalid attempts made for login. Temporary logged out of the menu !!");
-            return null;
-        }
-        System.out.println("Login successful. Welcome :" + userObject.getUserName());
-        return userObject;
-
-    }
-
-    public int userTypeSelection(){
-        boolean validInput = false;
-
-        while(!validInput){
-            System.out.println("Please select any option from the following :");
-            System.out.println("0 : Seller");
-            System.out.println("1 : Buyer");
-            System.out.println("2 : Exit Program");
-
-            typeOfUser = inputScanner.nextInt();
-            if(typeOfUser == 0 || typeOfUser == 1 || typeOfUser == 2){
-                validInput = true;
-            }
-        }
-        return typeOfUser;
-    }
-
-    private UserInfoItem inputCredentials() {
-        int countWrongAttempts = 0;
+    private UserInfoItem enterLoginCredentials() {
+        int wrongAttemptsCnt = 0;
         while(true){
-            if(countWrongAttempts >= 10){
+            if(wrongAttemptsCnt >= 10){
                 return null;
             }
-            System.out.println("Please enter username : ");
-            String scannedUsername = inputScanner.next();
+            System.out.println("Please enter userName : ");
+            String userName = sc.next();
             System.out.println("Please enter password : ");
-            String scannedPassword = inputScanner.next();
-            if(authentication(scannedUsername, scannedPassword)){
-                return new UserInfoItem(typeOfUser, scannedUsername, scannedPassword);
+            String password = sc.next();
+            if(authenticateUserCredentials(userName, password)){
+                return new UserInfoItem(typeOfUser, userName, password);
             }
             else{
-                countWrongAttempts++;
+                wrongAttemptsCnt++;
             }
         }
     }

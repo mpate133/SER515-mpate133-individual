@@ -1,15 +1,10 @@
 package DesignPattern;
 
 import java.util.Iterator;
-import java.util.List;
 
-public class ProductIterator extends ListIterator {
+public class ProductIterator extends IteratorModal {
     public boolean hasNext(Iterator<Product> iterator) {
         return iterator.hasNext();
-    }
-
-    public void moveToHead(Iterator<Product> iterator) {
-        System.out.println("Head moved..");
     }
 
     public Product next(Iterator<Product> iterator) {
@@ -26,4 +21,10 @@ public class ProductIterator extends ListIterator {
         }
 
     }
+
+    public void moveToHead(Iterator<Product> iterator) {
+        System.out.println("Head moved..");
+    }
+
+    
 }

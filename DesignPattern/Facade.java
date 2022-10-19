@@ -1,13 +1,12 @@
 package DesignPattern;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
 public class Facade {
 
-	private final Scanner inputScanner = new Scanner(System.in);
+	private final Scanner sc = new Scanner(System.in);
 
 	private int userType;
 	private Product theSelectedProduct;
@@ -21,30 +20,34 @@ public class Facade {
 		System.out.println("Facade Pattern");
 		System.out.println("*****************************");
 
-		initiateFacade();
+		initiateFacadePattern();
 	}
 
-	private void initiateFacade(){
+	private void initiateFacadePattern(){
 		System.out.println("Facade Method is initiated.........");
 
-		boolean isLoginSuccessful = login();
-		if(!isLoginSuccessful){
-			System.out.println("Login not successful");
+		boolean isValidLogin = login();
+
+		if(!isValidLogin){
+			System.out.println("Login Failed...");
 			return;
 		}
+
 		createProductList();
-		inputProductSelection();
+		selectProductFromMenu();
+
 		this.theSelectedProduct = selectProduct();
 		System.out.println("Your selected product is : " + this.theSelectedProduct.getProductName());
 	}
 
 	public boolean login() {
 		Login loginObject = new Login();
-		setUserType(loginObject.userTypeSelection());
+		setUserType(loginObject.selectTheTypeOfUser());
 		if(userType == 2){
 			return false;
 		}
-		UserInfoItem user = loginObject.displayLoginForm();
+
+		UserInfoItem user = loginObject.displayLoginOptions();
 		if(user == null){
 			return false;
 		}
@@ -76,14 +79,14 @@ public class Facade {
 
 	}
 
-	public void createUser(UserInfoItem userinfoitem) {
-		setUserType(userinfoitem.getUserType());
-		setPerson(userinfoitem);
+	public void createUser(UserInfoItem userInfo) {
+		setUserType(userInfo.getUserType());
+		setUserAsPerson(userInfo);
 	}
 
 	public void createProductList() {
 		theProductList = new ClassProductList();
-		theProductList.readProductList();
+		theProductList.makeProductListFromDataset();
 	}
 
 	public void AttachProductToUser() {
@@ -92,19 +95,19 @@ public class Facade {
 
 	public Product selectProduct() {
 		System.out.println("Select the Product...");
-		List<Product> products = this.theProductList.productList;
-		Iterator<Product> iterator = (Iterator<Product>) this.theProductList.createIterator();
+		// List<Product> products = this.theProductList.productList;
+		Iterator<Product> iterator = this.theProductList.createIterator();
 		ProductIterator productIterator = new ProductIterator();
-		int index = 0;
+		int i = 0;
 		while(productIterator.hasNext(iterator)){
 			Product product = productIterator.next(iterator);
-			System.out.println(Integer.toString(index) + " " + product.getProductName() + " " + product.getValue());
-			index++;
+			System.out.println(Integer.toString(i) + ". " + product.getProductName() + " : " + product.getValue());
+			i++;
 		}
 		System.out.println("Select an option...");
-		int option = inputScanner.nextInt();
+		int selectedOption = sc.nextInt();
 
-		Product selectedProduct = this.theProductList.productList.get(option - 1);
+		Product selectedProduct = this.theProductList.productList.get(selectedOption - 1);
 		return selectedProduct;
 	}
 
@@ -113,20 +116,19 @@ public class Facade {
 	}
 
 	public void setUserType(int typeOfUser){
-
 		this.userType = typeOfUser;
 	}
 
-	public void setPerson(UserInfoItem userInfoItem){
+	public void setUserAsPerson(UserInfoItem userInfoItem){
 		this.thePerson = PersonFactory.createPerson(userInfoItem.getUserType());
 	}
 
-	public void inputProductSelection(){
+	public void selectProductFromMenu(){
 		System.out.println("Select from the following menus :");
 		System.out.println("0. Meat Product Menu");
 		System.out.println("1. Produce Product Menu");
 
-		int menuOption = inputScanner.nextInt();
+		int menuOption = sc.nextInt();
 
 		switch (menuOption){
 			case 0:

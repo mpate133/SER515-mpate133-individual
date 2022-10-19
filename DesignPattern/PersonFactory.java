@@ -9,7 +9,7 @@ public class PersonFactory extends Person {
     public void showMenu() {}
 
     @Override
-    public ProductMenu createProductMenu() {
+    public ProductMenu CreateProductMenu() {
         return null;
     }
 

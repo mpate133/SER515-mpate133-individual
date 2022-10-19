@@ -14,7 +14,7 @@ public class ClassProductList {
         productList = new ArrayList<>();
     }
 
-    public void readProductList(){
+    public void makeProductListFromDataset(){
         try{
             File file = new File("DesignPattern/TextFiles/ProductInfo.txt");
 
@@ -36,8 +36,8 @@ public class ClassProductList {
         return this.productList.iterator();
     }
 
-    public Reminder accept(NodeVisitor nodeVisitor) {
+    public Reminder accept(NodeVisitor visitor) {
         System.out.println("Reminder for product list........");
-        return nodeVisitor.visitProduct(this);
+        return visitor.visitProduct(this);
     }
 }

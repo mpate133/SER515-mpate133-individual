@@ -3,7 +3,7 @@ package DesignPattern;
 public abstract class Person {
     protected static ProductMenu theProductMenu;
     public abstract void showMenu();
-    public abstract ProductMenu createProductMenu();
+    public abstract ProductMenu CreateProductMenu();
 
     public Person(ProductMenu theProductMenu){
         this.theProductMenu = theProductMenu;

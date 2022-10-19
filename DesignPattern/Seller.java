@@ -15,7 +15,7 @@ public class Seller extends Person{
     }
 
     @Override
-    public ProductMenu createProductMenu() {
+    public ProductMenu CreateProductMenu() {
         return null;
     }
 }
