@@ -13,13 +13,13 @@ public class PersonFactory extends Person {
         return null;
     }
 
-    public static Person createPerson(int userType){
+    public static Person createPerson(int typeOfUser){
         Person person;
         System.out.println("***************************************");
         System.out.println("Factory Pattern");
         System.out.println("***************************************");
 
-        switch (userType){
+        switch (typeOfUser){
             case 0:
                 person = new Seller();
                 System.out.println("Object for seller is created!");
@@ -29,7 +29,7 @@ public class PersonFactory extends Person {
                 System.out.println("Object for Buyer is created!");
                 break;
             default:
-                throw new IllegalStateException("Unexpected value: " + userType);
+                throw new IllegalStateException("Entered value is wrong: " + typeOfUser);
         }
         return person;
     }
