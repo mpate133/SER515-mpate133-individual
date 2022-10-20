@@ -2,10 +2,10 @@ package DesignPattern;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.io.FileReader;
+import java.util.ArrayList;
 
 
 public class ClassProductList {
@@ -22,7 +22,8 @@ public class ClassProductList {
 
             String lineReader;
 
-            while ((lineReader = bufferReader.readLine()) != null) {
+            while (bufferReader.readLine() != null) {
+                lineReader = bufferReader.readLine();
                 String[] temp = lineReader.split(":");
                 productList.add(new Product(temp[0], temp[1]));
             }
@@ -32,12 +33,13 @@ public class ClassProductList {
         }
     }
 
-    public Iterator createIterator() {
+    // iterator for iterator pattern
+    public Iterator<Product> createIterator() {
         return this.productList.iterator();
     }
 
-    public Reminder accept(NodeVisitor visitor) {
-        System.out.println("Reminder for product list........");
-        return visitor.visitProduct(this);
-    }
+    // public Reminder accept(NodeVisitor visitor) {
+    //     System.out.println("Reminder for product list........");
+    //     return visitor.visitProduct(this);
+    // }
 }

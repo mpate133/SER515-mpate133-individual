@@ -5,23 +5,33 @@ public abstract class Person {
     public abstract void showMenu();
     public abstract ProductMenu CreateProductMenu();
 
+
+    // constructor of Person class
     public Person(ProductMenu theProductMenu){
-        this.theProductMenu = theProductMenu;
+        Person.theProductMenu = theProductMenu;
     }
 
+    // method to show Add button
+    @SuppressWarnings("unused")
     private void showAddButton() {
-        this.theProductMenu.showAddButton();
+        theProductMenu.showAddButton();
     }
 
+    // method to show View button
+    @SuppressWarnings("unused")
     private void showViewButton() {
-        this.theProductMenu.showViewButton();
+        theProductMenu.showViewButton();
     }
 
+    // metohod to show radio button
+    @SuppressWarnings("unused")
     private void showRadioButton() {
-        this.theProductMenu.showRadioButton();
+        theProductMenu.showRadioButton();
     }
 
+    // method to show labels.
+    @SuppressWarnings("unused")
     private void showLabels() {
-        this.theProductMenu.showLabels();
+        theProductMenu.showLabels();
     }
 }

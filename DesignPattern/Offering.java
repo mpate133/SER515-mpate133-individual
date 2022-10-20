@@ -1,5 +1,5 @@
 package DesignPattern;
 
-public class TradingMenu {
+public class Offering {
 
 }

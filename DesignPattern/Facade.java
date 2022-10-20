@@ -1,18 +1,19 @@
 package DesignPattern;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+// import java.util.List;
 
 public class Facade {
 
 	private final Scanner sc = new Scanner(System.in);
 
+	// userType = 0 for Seller and 1 for buyer
 	private int userType;
+	// selected product by the user (meat of produce) 
 	private Product theSelectedProduct;
 	private int nProductCategory;
 	private ClassProductList theProductList;
-	private Person thePerson;
+	private Person thePerson; // buyer or seller
 
 
 	public Facade(){
@@ -34,16 +35,18 @@ public class Facade {
 		}
 
 		createProductList();
-		selectProductFromMenu();
-
 		this.theSelectedProduct = selectProduct();
-		System.out.println("Your selected product is : " + this.theSelectedProduct.getProductName());
+
+		AttachProductToUser();
+		productOperation();
+		// selectProductFromMenu();
 	}
 
 	public boolean login() {
 		Login loginObject = new Login();
 		setUserType(loginObject.selectTheTypeOfUser());
 		if(userType == 2){
+			/* we have set 2 for exit */
 			return false;
 		}
 
@@ -56,27 +59,28 @@ public class Facade {
 	}
 
 	public void addTrading() {
-
+		System.out.println("Trading is being added....");
 	}
 
 	public void viewTrading() {
-
+		System.out.println("Trading is being viewed....");
 	}
 
 	public void decideBidding() {
-
+		System.out.println("Bidding is being decided....");
 	}
 
 	public void discussBidding() {
-
+		System.out.println("Bidding is being discussed....");
 	}
 
 	public void submitBidding() {
-
+		System.out.println("Bidding is being submitted....");
 	}
 
 	public void remind() {
-
+		Reminder reminder = new Reminder();
+		reminder.visitFacade(this);
 	}
 
 	public void createUser(UserInfoItem userInfo) {
@@ -108,6 +112,8 @@ public class Facade {
 		int selectedOption = sc.nextInt();
 
 		Product selectedProduct = this.theProductList.productList.get(selectedOption - 1);
+		System.out.println("Your selected product is : " + selectedProduct.getProductName());
+
 		return selectedProduct;
 	}
 
