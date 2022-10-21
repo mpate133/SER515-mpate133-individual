@@ -51,10 +51,10 @@ public class Login {
     private boolean authenticateUserCredentials(String userName, String userPassword){
         File fileReader;
         if(typeOfUser == 0){
-            fileReader = new File("DesignPattern/TextFiles/SellerInfo.txt");
+            fileReader = new File("DesignPattern/RecordFilesOfData/SellerInfo.txt");
         }
         else{
-            fileReader = new File("DesignPattern/TextFiles/BuyerInfo.txt");
+            fileReader = new File("DesignPattern/RecordFilesOfData/BuyerInfo.txt");
         }
         try {
             BufferedReader bfr = new BufferedReader(new FileReader(fileReader));

@@ -73,7 +73,7 @@ public class Facade {
 		 */
 
 		try {
-			FileWriter fw = new FileWriter("DesignPattern/TextFiles/UserProduct.txt", true);
+			FileWriter fw = new FileWriter("DesignPattern/RecordFilesOfData/UserProduct.txt", true);
 			/* in the file, we will append
 			 userName:ValueOfProduct 
 			 

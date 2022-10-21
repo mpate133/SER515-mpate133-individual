@@ -19,7 +19,7 @@ public class ClassProductList {
 
     public void makeProductListFromDataset(){
         try{
-            File file = new File("DesignPattern/TextFiles/ProductInfo.txt");
+            File file = new File("DesignPattern/RecordFilesOfData/ProductInfo.txt");
 
             BufferedReader bfr = new BufferedReader(new FileReader(file));
 
