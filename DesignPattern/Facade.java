@@ -193,11 +193,6 @@ public class Facade {
 				}
 				/*these methods will  */
 				this.thePerson.showMenu();
-				Person.theProductMenu.showAddButton();
-				Person.theProductMenu.showLabels();
-				Person.theProductMenu.showRadioButton();
-				Person.theProductMenu.showViewButton();
-				Person.theProductMenu.showComboBoxes();
 			}
 			else if(action == 2){
 				/*remind method will be called */
