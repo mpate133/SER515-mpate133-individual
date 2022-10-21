@@ -2,28 +2,43 @@ package DesignPattern;
 
 import java.util.Iterator;
 
-public class ProductIterator extends IteratorModal {
-    public boolean hasNext(Iterator<Product> iterator) {
-        return iterator.hasNext();
+public class ProductIterator {
+
+    public void Remove(Iterator<Product> prdItr) {
+        /*
+         * here we will check if the iterator
+         * has the next object or not;
+         * If true, then we remove that.
+         */
+        if (this.hasNext(prdItr)) {
+            prdItr.remove();
+        }
+
     }
 
-    public Product next(Iterator<Product> iterator) {
-        if (this.hasNext(iterator)) {
-            return (Product) iterator.next();
+    public Product Next(Iterator<Product> prdItr) {
+        /* 
+         * if the iterator has next object,
+         * then we go to that object.
+         */
+        if (this.hasNext(prdItr)) {
+            return (Product) prdItr.next();
         } else {
             return null;
         }
     }
 
-    public void remove(Iterator<Product> iterator) {
-        if (this.hasNext(iterator)) {
-            iterator.next();
-        }
-
+    public boolean hasNext(Iterator<Product> prdItr) {
+        /*
+         * this method checks if
+         * the prdItr (product iterator) has 
+         * its next object or not
+         */
+        return prdItr.hasNext();
     }
 
-    public void moveToHead(Iterator<Product> iterator) {
-        System.out.println("Head moved..");
+    public void MoveToHead(Iterator<Product> prdItr) {
+        System.out.println("move to head method...");
     }
 
     

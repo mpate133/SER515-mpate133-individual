@@ -1,6 +1,10 @@
 package DesignPattern;
 
 public class Buyer extends Person{
+    
+    /*
+     * Buyer and Seller will fall within Bridge pattern;
+     */
     public Buyer(){
         super(theProductMenu);
     }
@@ -8,11 +12,13 @@ public class Buyer extends Person{
     @Override
     public void showMenu() {
 
-        System.out.println("********************************");
-        System.out.println("Bridge Pattern");
-        System.out.println("********************************");
 
-        // here we will check and print if theProductMenu is instance of MeatProductMenu or ProduceProductMenu.
+        System.out.println("+++++++++++++  Bridge Pattern  ++++++++++");
+
+        /* here we will check and print 
+        * if theProductMenu is instance of
+        * MeatProductMenu or ProduceProductMenu.
+        */
         if(theProductMenu instanceof ProduceProductMenu){
             System.out.println("Produce Product Menu...");
         }
@@ -22,14 +28,23 @@ public class Buyer extends Person{
     }
 
 
-    // method to create and set the menu according to the buyer's selection
+    /* method to create and set 
+    * the menu according 
+    * to the buyer's selection
+    */
     @Override
     public ProductMenu CreateProductMenu() {
-        if(Product.typeOfTheProduct == 0){
-            theProductMenu = new MeatProductMenu();
-        }else{
-            theProductMenu = new ProduceProductMenu();
+        switch(Product.typeOfTheProduct){
+            case 1:
+                theProductMenu = new ProduceProductMenu();
+                break;
+            case 0:
+                theProductMenu = new MeatProductMenu();
+            default:
+                System.out.println("Invalid Choice...");
+                break;
         }
+
         return theProductMenu;
     }
 }

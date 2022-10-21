@@ -48,25 +48,6 @@ public class Facade {
 		System.out.println("Bidding is being submitted....");
 	}
 
-
-	private void startFacadeObject(){
-		System.out.println("Facade Method is initiated.........");
-
-		boolean isValidLogin = login();
-
-		if(!isValidLogin){
-			System.out.println("Login Failed...");
-			return;
-		}
-
-		createProductList();
-		this.theSelectedProduct = selectProduct();
-
-		AttachProductToUser();
-		productOperation();
-		// selectProductFromMenu();
-	}
-
 	public boolean login() {
 
 		Login loginObj = new Login();
@@ -78,7 +59,7 @@ public class Facade {
 			return false;
 		}
 
-		UserInfoItem user = loginObj.displayLoginOptions();
+		UserInfoItem user = loginObj.showLoginOptions();
 		
 		if(user == null){
 			return false;
@@ -102,7 +83,7 @@ public class Facade {
 			 pepe:Beef
 			 
 			 */ 
-			fw.write(this.userDetails.getUserName()+":"+this.theSelectedProduct.getValue());
+			fw.write(this.userDetails.getNameOfTheUser()+":"+this.theSelectedProduct.getValueOfTheProduct());
 			fw.close();
 
 		} catch (IOException e) {
@@ -112,7 +93,7 @@ public class Facade {
 	}
 	
 	public void createUser(UserInfoItem userInfo) {
-		setUserType(userInfo.getUserType());
+		setUserType(userInfo.getTypeOfTheUser());
 		setUserAsPerson(userInfo);
 	}
 
@@ -129,12 +110,12 @@ public class Facade {
 	public Product selectProduct() {
 		System.out.println("Select the product from given options...");
 		// List<Product> products = this.theProductList.listOfTheProducts;
-		Iterator<Product> iterator = this.theProductList.createIterator();
+		Iterator<Product> iterator = this.theProductList.makeIteratorForOfferingList();
 		ProductIterator productIterator = new ProductIterator();
 		int i = 0;
 		while(productIterator.hasNext(iterator)){
-			Product prItr = productIterator.next(iterator);
-			System.out.println(Integer.toString(i) + ". " + prItr.getProductName() + " : " + prItr.getValue());
+			Product prItr = productIterator.Next(iterator);
+			System.out.println(Integer.toString(i) + ". " + prItr.getNameOfTheProduct() + " : " + prItr.getValueOfTheProduct());
 			i++;
 		}
 		System.out.println("Enter your selection...");
@@ -142,7 +123,7 @@ public class Facade {
 
 		Product userSelectedProduct = this.theProductList.listOfTheProducts.get(userSelectedOption - 1);
 
-		if(userSelectedProduct.getProductName().equals("Produce")){
+		if(userSelectedProduct.getNameOfTheProduct().equals("Produce")){
 			this.nProductCategory = 1;
 			Product.typeOfTheProduct = 1;
 		}
@@ -151,8 +132,8 @@ public class Facade {
 			Product.typeOfTheProduct = 0;
 		}
 
-		System.out.println("Your selected product is : " + userSelectedProduct.getValue());
-		System.out.println("Your selected product category is : " + userSelectedProduct.getProductName());
+		System.out.println("Your selected product is : " + userSelectedProduct.getValueOfTheProduct());
+		System.out.println("Your selected product category is : " + userSelectedProduct.getNameOfTheProduct());
 
 		return userSelectedProduct;
 	}
@@ -199,7 +180,25 @@ public class Facade {
 
 	public void setUserAsPerson(UserInfoItem userInfoItem){
 		this.userDetails = userInfoItem;
-		this.thePerson = PersonFactory.createPerson(userInfoItem.getUserType());
+		this.thePerson = FactoryPattern.createPerson(userInfoItem.getTypeOfTheUser());
+	}
+
+	private void startFacadeObject(){
+		System.out.println("Facade Method is initiated.........");
+
+		boolean isValidLogin = login();
+
+		if(!isValidLogin){
+			System.out.println("Login Failed...");
+			return;
+		}
+
+		createProductList();
+		this.theSelectedProduct = selectProduct();
+
+		AttachProductToUser();
+		productOperation();
+		// selectProductFromMenu();
 	}
 
 	// public void selectProductFromMenu(){

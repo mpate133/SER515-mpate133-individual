@@ -6,29 +6,28 @@ import java.io.FileReader;
 import java.util.Scanner;
 
 public class Login {
+    
     private int typeOfUser;
     private Scanner sc = new Scanner(System.in);
 
 
-    protected UserInfoItem displayLoginOptions() {
-        switch(typeOfUser) {
-            case 0:
-                System.out.println("Seller Login Form");
-                break;
-            case 1:
-                System.out.println("Buyer Login Form");
-                break;
-            default:
-                break;
+    public UserInfoItem showLoginOptions() {
+        if(typeOfUser == 0) {
+            System.out.println("Login for Sellers...");
         }
+        else if(typeOfUser == 1){
+            System.out.println("Login For Buyers...");
+        }
+    
 
-        UserInfoItem userObject = enterLoginCredentials();
-        if(userObject == null){
-            System.out.println("10 invalid attempts made for login. Temporary logged out of the menu !!");
+        UserInfoItem userCredentials = enterLoginCredentials();
+
+        if(userCredentials == null){
+            System.out.println("Too many invalid attempts made for login");
             return null;
         }
-        System.out.println("Login successful. Welcome :" + userObject.getUserName());
-        return userObject;
+        System.out.println("Login successful. Welcome :" + userCredentials.getNameOfTheUser());
+        return userCredentials;
 
     }
 
@@ -79,21 +78,28 @@ public class Login {
     }
 
     private UserInfoItem enterLoginCredentials() {
+        /*
+         we will allow 3 wrong login attemps, 
+         after that we exit the system.
+         */
+
         int wrongAttemptsCnt = 0;
-        while(true){
-            if(wrongAttemptsCnt >= 10){
-                return null;
-            }
-            System.out.println("Please enter userName : ");
-            String userName = sc.next();
-            System.out.println("Please enter password : ");
+        while(wrongAttemptsCnt<3){
+
+            System.out.println("Enter your userName : ");
+            String username = sc.next();
+            System.out.println("Enter your password : ");
             String password = sc.next();
-            if(authenticateUserCredentials(userName, password)){
-                return new UserInfoItem(typeOfUser, userName, password);
+            boolean auth = authenticateUserCredentials(username, password);
+            if(auth){
+                return new UserInfoItem(typeOfUser, username, password);
             }
             else{
                 wrongAttemptsCnt++;
             }
         }
+
+        return null;
     }
+
 }

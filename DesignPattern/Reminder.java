@@ -1,15 +1,20 @@
 package DesignPattern;
 
 public class Reminder {
-    private NodeVisitor nodeVisitor;
+    
+    NodeVisitor nodeVisitor;
 
     // Constructor
     public Reminder(){
-        System.out.println("********************************");
-        System.out.println("Visitor Pattern");
-        System.out.println("********************************");
 
-        // nodeV isitor initialized with ReminderVisior class object;
+        /* 
+         * as per the class diagram;
+         * Reminder class user NodeVisitor and ClassProductList classes;
+         * So printing "Visitor pattern on initialization"
+        */
+        System.out.println("+++++++++++++  Visitor Pattern - from Reminder Class  +++++++++++++");
+
+        // nodeVisitor initialized with ReminderVisior class object;
         nodeVisitor = new ReminderVisitor();
     }
 

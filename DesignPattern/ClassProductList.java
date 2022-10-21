@@ -9,7 +9,10 @@ import java.util.ArrayList;
 
 
 public class ClassProductList {
+    
     List<Product> listOfTheProducts;
+    
+    // Constructor
     public ClassProductList(){
         listOfTheProducts = new ArrayList<>();
     }
@@ -18,30 +21,31 @@ public class ClassProductList {
         try{
             File file = new File("DesignPattern/TextFiles/ProductInfo.txt");
 
-            BufferedReader bufferReader= new BufferedReader(new FileReader(file));
+            BufferedReader bfr = new BufferedReader(new FileReader(file));
 
             String lineReader;
 
-            while (bufferReader.readLine() != null) {
-                lineReader = bufferReader.readLine();
+            while (bfr.readLine() != null) {
+                lineReader = bfr.readLine();
 
                 String[] prod = lineReader.split(":");
-                
+
                 listOfTheProducts.add(new Product(prod[0], prod[1]));
             }
+            bfr.close();
         }
         catch (Exception exception){
+            // Auto-generated catch block
             exception.printStackTrace();
         }
     }
 
     // iterator for iterator pattern
-    public Iterator<Product> createIterator() {
+    public Iterator<Product> makeIteratorForOfferingList() {
         return this.listOfTheProducts.iterator();
     }
 
-    // public Reminder accept(NodeVisitor visitor) {
-    //     System.out.println("Reminder for product list........");
-    //     return visitor.visitProduct(this);
-    // }
+    public void accept(NodeVisitor visitor) {
+        System.out.println("Reminder for product list........");
+    }
 }

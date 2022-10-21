@@ -1,25 +1,49 @@
 package DesignPattern;
 
 public class UserInfoItem {
-    private int userType;
+   
+    // name of the user
     private String userName;
-    private String userPassword;
 
-    public UserInfoItem(int userType, String userName, String userPassword){
-        this.userType = userType;
-        this.userName = userName;
-        this.userPassword = userPassword;
+    // user's password
+    private String password;
+
+    // if the user is a Buyer or a Seller
+    private int typeOfTheUser; 
+
+    // Constructor of the UserInfoItem class
+    public UserInfoItem(int typeOfUser, String name, String passWord){
+        /*
+         * initialisation of the local variables
+         */
+        this.typeOfTheUser = typeOfUser;
+        this.userName = name;
+        this.password = passWord;
     }
 
-    public int getUserType(){
-        return userType;
-    }
 
-    public String getUserName() {
+    public String getNameOfTheUser() {
+        /*
+         * returns the name of user;
+         * example: pepe, mimi etc.
+         */
         return userName;
     }
 
-    public String getPassword() {
-        return userPassword;
+    public int getTypeOfTheUser(){
+        /*
+         * returns the type of user;
+         * 0 for Buyers and
+         * 1 for Sellers
+         */
+        return typeOfTheUser;
+    }
+
+    public String getPasswordOfTheUser() {
+        /*
+         * returns the password of 
+         * currently loggedIn user
+         */
+        return password;
     }
 }

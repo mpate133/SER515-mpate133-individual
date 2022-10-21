@@ -1,9 +1,10 @@
 package DesignPattern;
 
 public abstract class Person {
-    protected static ProductMenu theProductMenu;
+    
+    public static ProductMenu theProductMenu;
+    
     public abstract void showMenu();
-    public abstract ProductMenu CreateProductMenu();
 
 
     // constructor of Person class
@@ -34,4 +35,7 @@ public abstract class Person {
     private void showLabels() {
         theProductMenu.showLabels();
     }
+
+    public abstract ProductMenu CreateProductMenu();
+    
 }
