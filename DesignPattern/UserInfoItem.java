@@ -33,8 +33,8 @@ public class UserInfoItem {
     public int getTypeOfTheUser(){
         /*
          * returns the type of user;
-         * 0 for Buyers and
-         * 1 for Sellers
+         * 0 for Sellers and
+         * 1 for Buyers
          */
         return typeOfTheUser;
     }

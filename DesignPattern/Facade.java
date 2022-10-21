@@ -21,9 +21,7 @@ public class Facade {
 
 
 	public Facade(){
-		System.out.println("*****************************");
-		System.out.println("Inside Facade Pattern");
-		System.out.println("*****************************");
+		System.out.println("+++++++++++  Inside Facade Pattern  +++++++++++");
 
 		startFacadeObject();
 	}
@@ -75,7 +73,7 @@ public class Facade {
 		 */
 
 		try {
-			FileWriter fw = new FileWriter("DesignPattern/TextFiles/UserProduct.txt");
+			FileWriter fw = new FileWriter("DesignPattern/TextFiles/UserProduct.txt", true);
 			/* in the file, we will append
 			 userName:ValueOfProduct 
 			 
@@ -83,7 +81,7 @@ public class Facade {
 			 pepe:Beef
 			 
 			 */ 
-			fw.write(this.userDetails.getNameOfTheUser()+":"+this.theSelectedProduct.getValueOfTheProduct());
+			fw.write(this.userDetails.getNameOfTheUser()+":"+this.theSelectedProduct.getValueOfTheProduct() + "\n");
 			fw.close();
 
 		} catch (IOException e) {
@@ -121,7 +119,7 @@ public class Facade {
 		System.out.println("Enter your selection...");
 		int userSelectedOption = sc.nextInt();
 
-		Product userSelectedProduct = this.theProductList.listOfTheProducts.get(userSelectedOption - 1);
+		Product userSelectedProduct = this.theProductList.listOfTheProducts.get(userSelectedOption);
 
 		if(userSelectedProduct.getNameOfTheProduct().equals("Produce")){
 			this.nProductCategory = 1;

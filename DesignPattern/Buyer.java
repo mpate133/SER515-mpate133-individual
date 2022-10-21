@@ -12,6 +12,9 @@ public class Buyer extends Person{
     @Override
     public void showMenu() {
 
+        /*
+        * Buyer and Seller will fall within Bridge pattern;
+        */
 
         System.out.println("+++++++++++++  Bridge Pattern  ++++++++++");
 

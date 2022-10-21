@@ -54,12 +54,12 @@ public class Login {
             fileReader = new File("DesignPattern/TextFiles/SellerInfo.txt");
         }
         else{
-            fileReader = new File("DesignPattern/TextFiles/BuyInfo.txt");
+            fileReader = new File("DesignPattern/TextFiles/BuyerInfo.txt");
         }
         try {
-            BufferedReader bufferReader = new BufferedReader(new FileReader(fileReader));
+            BufferedReader bfr = new BufferedReader(new FileReader(fileReader));
             String lineReader;
-            while ((lineReader = bufferReader.readLine()) != null)
+            while ((lineReader = bfr.readLine()) != null)
             {
                 String[] credentialsArr = lineReader.split(":",2);
                 if(userName.equals(credentialsArr[0])) {
@@ -69,8 +69,10 @@ public class Login {
                     break;
                 }
             }
+            
         } catch (Exception exception) {
-            System.out.println("Exception occurred while reading the file. Check the data is correct or not !!");
+            // Auto-generated catch block
+            System.out.println(exception);
             exception.printStackTrace();
         }
         System.out.println("Invalid Credentials. Please try again!!");

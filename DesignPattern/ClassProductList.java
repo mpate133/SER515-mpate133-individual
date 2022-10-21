@@ -25,8 +25,8 @@ public class ClassProductList {
 
             String lineReader;
 
-            while (bfr.readLine() != null) {
-                lineReader = bfr.readLine();
+            while ((lineReader = bfr.readLine()) != null) {
+//                lineReader = bfr.readLine();
 
                 String[] prod = lineReader.split(":");
 

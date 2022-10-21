@@ -1,7 +1,4 @@
 tutu:Beef
-tutu:Tomato
-mimi:Beef
-mimi:Onion
-pepe:Beef
-pepe:Tomato
-pepe:Onion
+mimi:Tomato
+mimi:Mutton
+mimi:Pork

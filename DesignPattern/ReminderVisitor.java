@@ -3,6 +3,7 @@ package DesignPattern;
 public class ReminderVisitor extends NodeVisitor{
 
     // Private variable as per the class diagram
+    @SuppressWarnings("unused")
     private Reminder m_Reminder;
 
     @Override
