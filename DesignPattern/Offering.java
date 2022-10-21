@@ -4,7 +4,7 @@ public class Offering {
     
     String offering;
     
-    // Constructor
+    // Constructor for Offering class
     public Offering(String offering){
         this.offering = offering;
     }

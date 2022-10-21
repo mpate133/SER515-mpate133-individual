@@ -38,6 +38,7 @@ public class OfferingIterator {
     }
 
     public void MoveToHead(Iterator<Offering> offeringItr) {
+        // moveToHead mentioned in class diagrams
         System.out.println("move to head method from Offering..");
     }
 

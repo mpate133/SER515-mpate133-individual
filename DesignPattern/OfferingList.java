@@ -8,12 +8,13 @@ public class OfferingList {
     
     List<Offering> listOfOffering;
 
-    // Constructor
+    // Constructor for OfferingList class
     public OfferingList(){
         listOfOffering = new ArrayList<>();
     }
 
     public Iterator<Offering> makeIteratorForOfferingList() {
+        // iterator for listOfOffering
         return this.listOfOffering.iterator();
     }
     

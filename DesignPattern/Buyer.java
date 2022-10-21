@@ -31,7 +31,7 @@ public class Buyer extends Person{
     }
 
 
-    /* method to create and set 
+    /* this is the method to create and set 
     * the menu according 
     * to the buyer's selection
     */

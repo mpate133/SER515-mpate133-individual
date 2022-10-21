@@ -6,6 +6,7 @@ public class Seller extends Person{
      * Buyer and Seller will fall within Bridge pattern;
      */
 
+    // Constructor
     public Seller(){
         super(theProductMenu);
     }
@@ -29,6 +30,10 @@ public class Seller extends Person{
 
     @Override
     public ProductMenu CreateProductMenu() {
+        /* this is the method to create and set 
+         * the menu according 
+         * to the seller's selection
+         */
         switch(Product.typeOfTheProduct){
             case 1:
                 theProductMenu = new ProduceProductMenu();

@@ -38,6 +38,7 @@ public class ProductIterator {
     }
 
     public void MoveToHead(Iterator<Product> prdItr) {
+        // moveToHead method as per the class diagram
         System.out.println("move to head method...");
     }
 

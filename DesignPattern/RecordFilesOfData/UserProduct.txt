@@ -2,3 +2,6 @@ tutu:Beef
 mimi:Tomato
 mimi:Mutton
 mimi:Pork
+nana:Tomato
+pepe:Onion
+pepe:Beef

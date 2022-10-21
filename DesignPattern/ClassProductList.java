@@ -18,6 +18,11 @@ public class ClassProductList {
     }
 
     public void makeProductListFromDataset(){
+        /*
+         * This method reads the whole
+         * product list from given file 'ProductInfo.txt'
+         * and add the product to 'listOfTheProducts'
+         */
         try{
             File file = new File("DesignPattern/RecordFilesOfData/ProductInfo.txt");
 
@@ -26,8 +31,11 @@ public class ClassProductList {
             String lineReader;
 
             while ((lineReader = bfr.readLine()) != null) {
-//                lineReader = bfr.readLine();
-
+                /*
+                 * lineReader will be in the format of
+                 * name:value; example:- Meat:beef
+                 * so here we will separate them with split function
+                 */
                 String[] prod = lineReader.split(":");
 
                 listOfTheProducts.add(new Product(prod[0], prod[1]));
